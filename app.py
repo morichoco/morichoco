@@ -16,13 +16,16 @@ from linebot.models import (
 app = Flask(__name__)
 
 # OpenAI APIキー
-openai.api_key = "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"
+#openai.api_key = "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"
+openai.api_key = "myAPI"
 
 # LINEチャンネルアクセストークン
-LINE_CHANNEL_ACCESS_TOKEN = "ZJdyFcNiO+8dIBzAe+xP9QnaJFKmsv66XDEStB8PjacvhBVcEfwmYFHERQz3++zJbtmFmkV1NdKolkTtyw1QdIJJtKNAY8FEm8bPvNagje6+lqDk02RA5vZS4UuQ1RA8d8V1zY6bl0an4KhYSHzTDAdB04t89/1O/w1cDnyilFU="
+#LINE_CHANNEL_ACCESS_TOKEN = "ZJdyFcNiO+8dIBzAe+xP9QnaJFKmsv66XDEStB8PjacvhBVcEfwmYFHERQz3++zJbtmFmkV1NdKolkTtyw1QdIJJtKNAY8FEm8bPvNagje6+lqDk02RA5vZS4UuQ1RA8d8V1zY6bl0an4KhYSHzTDAdB04t89/1O/w1cDnyilFU="
+LINE_CHANNEL_ACCESS_TOKEN = "lineChannel"
 
 # LINEチャンネルシークレット
-LINE_CHANNEL_SECRET ='3df9df4ea226c2f147a38efe66b34c0f'
+#LINE_CHANNEL_SECRET ='3df9df4ea226c2f147a38efe66b34c0f'
+LINE_CHANNEL_SECRET ='lineSecret'
 
 line_bot_api = LineBotApi(LINE_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(LINE_CHANNEL_SECRET)
