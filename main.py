@@ -1,5 +1,6 @@
 import os
 from time import time
+from asgiref.wagi import WsgiToAsgi
 from flask import Flask, request, abort
 import openai
 
@@ -119,4 +120,5 @@ def generate_response(conversation):
     return response['choices'][0]['message']['content'].strip()
 
 if __name__ == "__app__":
-    app.run(debug=True)
+    asgi_app=WsgiToAsgi(app)
+    #app.run(debug=True)
