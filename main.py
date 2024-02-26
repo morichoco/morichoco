@@ -13,7 +13,7 @@ from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage
 )
 
-main = Flask(__name__)
+app = Flask(__name__)
 
 # OpenAI APIキー
 #openai.api_key = "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"
@@ -30,17 +30,17 @@ LINE_CHANNEL_SECRET ='lineSecret'
 line_bot_api = LineBotApi(LINE_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(LINE_CHANNEL_SECRET)
 
-@main.route("/")
+@app.route("/")
 def test():
     return "OK"
 
-@main.route("/callback", methods=["POST"])
+@app.route("/callback", methods=["POST"])
 def callback():
     signature = request.headers["X-Line-Signature"]
 
     # リクエストを取得
     body = request.get_data(as_text=True)
-    main.logger.info("Request body: " + body)
+    app.logger.info("Request body: " + body)
 
     # 署名を検証
     try:
@@ -90,7 +90,7 @@ def handle_message(event):
     #会話機能
     else:
         # ユーザーの入力を保存
-        conversations[userId].mainend(event.message.text)
+        conversations[userId].append(event.message.text)
 
         response =generate_response(conversations[userId])
 
@@ -118,5 +118,5 @@ def generate_response(conversation):
     # 生成された応答を返す
     return response['choices'][0]['message']['content'].strip()
 
-if __name__ == "__main__":
-    main.run(debug=True)
+if __name__ == "__app__":
+    app.run(debug=True)
